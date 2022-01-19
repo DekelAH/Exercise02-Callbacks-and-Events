@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Models
 {
+    [Serializable]
     [CreateAssetMenu(menuName = "Exercise02/Models/Player Model", fileName = "Player Model")]
     public class PlayerModel : ScriptableObject
     {
@@ -13,6 +14,12 @@ namespace Assets.Models
 
         [SerializeField]
         private int _gemsBalance;
+
+        #endregion
+
+        #region Fields
+
+        private string _modelName = "";
 
         #endregion
 
@@ -70,12 +77,19 @@ namespace Assets.Models
             }
         }
 
+        public string SetModelName(string modelName)
+        {
+            return _modelName = modelName;
+        }
+
         #endregion
 
         #region Properties
 
         public int CoinsBalance => _coinsBalance;
         public int GemsBalance => _gemsBalance;
+
+        public string ModelName => _modelName;
 
         #endregion
     }

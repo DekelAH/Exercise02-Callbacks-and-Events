@@ -1,15 +1,11 @@
 ﻿using Assets.Infastructure;
 using Assets.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using UnityEngine;
 
 namespace Assets.Scripts.Infastructure
 {
-    public sealed class PlayerDataManager
+    public class PlayerDataManager
     {
         #region Fields
 
@@ -21,10 +17,6 @@ namespace Assets.Scripts.Infastructure
 
         public PlayerDataManager()
         {
-            var playerModel = PlayerModelProvider.Instance.PlayerModel;
-            var coins = PlayerPrefs.GetInt("coins");
-            var gems = PlayerPrefs.GetInt("gems");
-            playerModel.Initialize(coins, gems);
             SubscribeToEvents();
         }
 
@@ -34,27 +26,63 @@ namespace Assets.Scripts.Infastructure
 
         private void OnSaveCoinsToPref(int coins)
         {
-            SavePlayerMode();
+
         }
 
         private void OnSaveGemssToPref(int gems)
         {
-            SavePlayerMode();
+
         }
 
         private void SubscribeToEvents()
         {
-            var playerModel = PlayerModelProvider.Instance.PlayerModel;
+            var playerModel = PlayerModelProvider.Instance.CurrentSaveOption;
             playerModel.CoinsBalanceChange += OnSaveCoinsToPref;
             playerModel.GemsBalanceChange += OnSaveGemssToPref;
         }
 
-        private void SavePlayerMode()
+        public void SaveToPlayerPrefs()
         {
-            var playerModel = PlayerModelProvider.Instance.PlayerModel;
+            var playerModel = PlayerModelProvider.Instance.CurrentSaveOption;
             PlayerPrefs.SetInt("coins", playerModel.CoinsBalance);
             PlayerPrefs.SetInt("gems", playerModel.GemsBalance);
             PlayerPrefs.Save();
+            Debug.Log("Saved to PlayerPrefs!");
+        }
+
+        public void LoadPlayerPrefs()
+        {
+            var playerModel = PlayerModelProvider.Instance.CurrentSaveOption;
+            playerModel.Initialize(PlayerPrefs.GetInt("coins"), PlayerPrefs.GetInt("gems"));
+            Debug.Log("Loaded from PlayerPrefs!");
+        }
+
+        public void SaveToLocalFile()
+        {
+            var playerModel = PlayerModelProvider.Instance.CurrentSaveOption;
+            string json = JsonUtility.ToJson(playerModel);
+            File.WriteAllText(Application.dataPath + "/save.txt", json);
+
+            Debug.Log("Saved!");
+        }
+
+        public void LoadLocalFile()
+        {
+            if (File.Exists(Application.dataPath + "/save.txt"))
+            {
+                string json = File.ReadAllText(Application.dataPath + "/save.txt");
+                Debug.Log("Loaded: " + json);
+
+                var playerModel = PlayerModelProvider.Instance.CurrentSaveOption;
+                JsonUtility.FromJsonOverwrite(json, playerModel);
+
+
+                playerModel.Initialize(playerModel.CoinsBalance, playerModel.GemsBalance);
+            }
+            else
+            {
+                Debug.Log("No Save!");
+            }
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]

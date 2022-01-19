@@ -1,4 +1,5 @@
 ﻿using Assets.Models;
+using Assets.Scripts.Models;
 using UnityEngine;
 
 namespace Assets.Infastructure
@@ -9,17 +10,17 @@ namespace Assets.Infastructure
 
         private static PlayerModelProvider _instance;
 
-        private static PlayerModel _playerModel;
+        private static SaveSelector _saveSelector;
 
-        private const string PLAYER_MODEL_RESOURCE_NAME = "Player Model";
+        private const string SAVE_SELECTOR_RESOURCE_NAME = "Save Selector";
 
         #endregion
 
         #region Constructors
 
-        public PlayerModelProvider(string playerModelResourceName)
+        public PlayerModelProvider(string saveSelectorResourceName)
         {
-            _playerModel = Resources.Load<PlayerModel>(playerModelResourceName);
+            _saveSelector = Resources.Load<SaveSelector>(saveSelectorResourceName);
         }
 
         #endregion
@@ -32,14 +33,14 @@ namespace Assets.Infastructure
             {
                 if (_instance == null)
                 {
-                    _instance = new PlayerModelProvider(PLAYER_MODEL_RESOURCE_NAME);
+                    _instance = new PlayerModelProvider(SAVE_SELECTOR_RESOURCE_NAME);
                 }
 
                 return _instance;
             }
         }
 
-        public PlayerModel PlayerModel => _playerModel;
+        public PlayerModel CurrentSaveOption => _saveSelector.GetSaveOption();
 
         #endregion
     }

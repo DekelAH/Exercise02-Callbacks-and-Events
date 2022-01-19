@@ -18,14 +18,14 @@ namespace DefaultNamespace
 
         #region Methods
 
-        private void Start()
+        private void FixedUpdate()
         {
             InitializeData();
         }
 
         private void InitializeData()
         {
-            var playerModel = PlayerModelProvider.Instance.PlayerModel;
+            var playerModel = PlayerModelProvider.Instance.CurrentSaveOption;
 
             playerModel.CoinsBalanceChange += OnCoinsBalanceChange;
             playerModel.GemsBalanceChange += OnGemsBalanceChange;
