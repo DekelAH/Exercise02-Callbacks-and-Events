@@ -344,6 +344,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2543140778281140108, guid: a6a79b69ddd04cd4fbb3989653351d18, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2543140778281140108, guid: a6a79b69ddd04cd4fbb3989653351d18, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 52243150}
@@ -353,7 +357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2543140778281140108, guid: a6a79b69ddd04cd4fbb3989653351d18, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnTakeGemsButtonClick
+      value: OnLoadBtnClick
       objectReference: {fileID: 0}
     - target: {fileID: 2543140778281140108, guid: a6a79b69ddd04cd4fbb3989653351d18, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -606,6 +610,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2543140778281140108, guid: a6a79b69ddd04cd4fbb3989653351d18, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2543140778281140108, guid: a6a79b69ddd04cd4fbb3989653351d18, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 52243150}
@@ -615,7 +623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2543140778281140108, guid: a6a79b69ddd04cd4fbb3989653351d18, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnTakeCoinsButtonClick
+      value: OnSaveBtnClick
       objectReference: {fileID: 0}
     - target: {fileID: 2543140778281140108, guid: a6a79b69ddd04cd4fbb3989653351d18, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

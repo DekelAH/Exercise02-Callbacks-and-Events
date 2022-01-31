@@ -15,7 +15,7 @@ namespace Assets.Scripts.Infastructure
 
         #region Constructors
 
-        public PlayerDataManager()
+        private PlayerDataManager()
         {
             SubscribeToEvents();
         }
